@@ -14,17 +14,11 @@ ActiveRecord::Schema.define(version: 2020_09_14_135617) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.text "desciption"
+    t.text "description"
     t.integer "price"
     t.boolean "approved", default: false
-    t.integer "seller_id"
-    t.integer "product_categories_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_categories_id"], name: "index_products_on_product_categories_id"
-    t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
-  add_foreign_key "products", "product_categories", column: "product_categories_id"
-  add_foreign_key "products", "sellers"
 end
