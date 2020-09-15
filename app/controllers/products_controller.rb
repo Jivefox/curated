@@ -2,7 +2,16 @@ class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
-        @products = Product.all
+        if params[:category_id]
+            @category = Category.find_by(id: params[:category_id])
+            if @category.nil?
+                redirect_to categories_path, alert: "Category not found"
+            else
+                @products = @category.products
+            end
+        else
+            @products = Product.all
+        end
     end
 
     def new
@@ -11,11 +20,12 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.create(products_params)
-        binding.pry
+        # binding.pry
         redirect_to product_path(@product)
     end
 
     def show
+        binding.pry
     end
 
     def edit

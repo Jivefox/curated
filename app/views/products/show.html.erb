@@ -1,4 +1,9 @@
 <h1><%= @product.name %></h1>
 
 <%= @product.description %><br><br>
-<%= number_to_currency @product.price %>
+<%= number_to_currency @product.price %><br><br>
+<% @product.categories.each do |category| %>
+    <li>
+        <%= link_to category.name, category_products_path(category) %>
+    </li>
+<% end %>

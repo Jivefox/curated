@@ -7,8 +7,8 @@
     <%= f.number_field :price %><br><br>
     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
     <%= f.fields_for :categories, @product.categories.build do |categories_fields| %>
-        <%= categories_fields.label :category %><br>
-        <%= categories_fields.text_field :name %>
+        <%= categories_fields.label :category, "Add new category" %><br>
+        <%= categories_fields.text_field :name %><br>
     <% end %><br>
     <%= f.label :product_image %><br>
     <%= f.file_field :product_image %><br><br>
