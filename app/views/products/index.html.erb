@@ -1,5 +1,9 @@
+<h1>Showing all products</h1>
+
 <% @products.each do |product| %>
     <li>
         <%= link_to product.name, product_path(product) %>
     </li>
-<% end %>
+<% end %><br>
+
+<%= link_to "Sell something", new_product_path %>

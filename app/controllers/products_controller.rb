@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
     end
 
     def show
-        binding.pry
+        # binding.pry
     end
 
     def edit
