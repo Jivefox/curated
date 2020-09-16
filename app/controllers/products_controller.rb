@@ -25,6 +25,15 @@ class ProductsController < ApplicationController
     end
 
     def show
+        if params[:category_id]
+            @category = Category.find_by(id: params[:category_id])
+            @product = @category.products.find_by(id: params[:id])
+            if @product.nil?
+                redirect_to category_products_path(@category), alert: "Product not found"
+            end
+        else
+            @product = Product.find(params[:id])
+        end
         # binding.pry
     end
 
@@ -42,7 +51,8 @@ class ProductsController < ApplicationController
 private
 
     def set_product
-        @product = Product.find(params[:id])
+        @product = Product.find_by(id: params[:id])
+        redirect_to products_path, alert: "Product not found" if @product.nil?
     end
 
     def products_params

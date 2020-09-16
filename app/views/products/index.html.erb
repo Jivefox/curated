@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
 <h1>Showing all products</h1>
 
 <% @products.each do |product| %>
