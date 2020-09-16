@@ -12,4 +12,4 @@
     </li>
 <% end %><br>
 
-<%= link_to "See all products", products_path %> | <%= link_to "Edit product", edit_product_path(@product) %> | <%= button_to "Delete product", product_path(@product), method: :delete %>
+<%= link_to "See all products", products_path %> | <%= link_to "Edit product", edit_product_path(@product) %> | <%= link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>
