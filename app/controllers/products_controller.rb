@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
     end
 
     def show
+        binding.pry
         if params[:category_id]
             @category = Category.find_by(id: params[:category_id])
             @product = @category.products.find_by(id: params[:id])
