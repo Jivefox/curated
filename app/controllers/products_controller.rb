@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.create(products_params)
-        # binding.pry
+        binding.pry
         redirect_to product_path(@product)
     end
 
@@ -35,7 +35,6 @@ class ProductsController < ApplicationController
         else
             @product = Product.find(params[:id])
         end
-        # binding.pry
     end
 
     def edit
@@ -63,6 +62,9 @@ private
     end
 
     def products_params
-        params.require(:product).permit(:name, :description, :price, category_ids: [], categories_attributes: [:name])
+        params
+            .require(:product)
+            .permit(:name, :description, :price, :approved, category_ids: [], categories_attributes: [:name])
+            .with_defaults(approved: false)
     end
 end
