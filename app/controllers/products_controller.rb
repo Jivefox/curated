@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
     end
 
     def update
-        @product.update(product_params)
+        @product.update(products_params)
 
         if @product.save
             redirect_to @product
