@@ -8,6 +8,10 @@ class CategoriesController < ApplicationController
         @category = Category.new
     end
 
+    def create
+        binding.pry
+    end
+
     def show
         @category = Category.find_by(id: params[:id])
     end

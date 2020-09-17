@@ -20,12 +20,12 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.create(products_params)
-        binding.pry
+        # binding.pry
         redirect_to product_path(@product)
     end
 
     def show
-        binding.pry
+        # binding.pry
         if params[:category_id]
             @category = Category.find_by(id: params[:category_id])
             @product = @category.products.find_by(id: params[:id])
