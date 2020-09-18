@@ -19,9 +19,14 @@ class ProductsController < ApplicationController
     end
 
     def create
-        @product = Product.create(products_params)
+        @product = Product.new(products_params)
         # binding.pry
-        redirect_to product_path(@product)
+        if @product.valid?
+            @product.save
+            redirect_to product_path(@product)
+        else 
+            redirect_to new_product_path
+        end
     end
 
     def show
