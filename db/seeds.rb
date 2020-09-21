@@ -15,13 +15,14 @@ categories = [{name: "Furniture"},
             Category.create(category)
         end
 
-products = [{name: "Tolix Stool", description: 'An overpriced stool', price: 126, approved: true, category_ids: [1]},
+products = [
+ {name: "Tolix Stool", description: 'An overpriced stool', price: 126, approved: true, category_ids: [1]},
  {name: "Leather Jacket", description: 'An expensive jacket; v rare.', price: 1026, approved: true, category_ids: [3]},
  {name: "Used X-Box", description: 'An old console you would not be interested in.', price: 51, approved: false, category_ids: [2]},
  {name: "Horizon Needle Point Pen", description: 'A great, fine-tipped pen', price: 16, approved: true, category_ids: [4]},
  {name: "Chesterfield Sofa", description: 'A couch that belongs in a library or, like, a salon where brandy is imbibed and cigars slowly burn while people suffer outside.', price: 5099, approved: true, category_ids: [1]},
  {name: "Madewell Denim", description: 'Slim fit, colored denim', price: 106, approved: true, category_ids: [3]}
- {name: "A Fancy Trash Bin", description: 'Anything can be made artisinal', price: 33, approved: true, category_ids: [4, 5] }
+ {name: "A Fancy Trash Bin", description: 'Anything can be made artisinal', price: 33, approved: true, category_ids: [4, 5]}
 ]
     
     products.each do |product|
