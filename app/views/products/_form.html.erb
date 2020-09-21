@@ -29,5 +29,7 @@
     <%= f.file_field :product_image %><br><br>
 
 
-    <%= f.submit "Submit Product for Approval" %>
+    <%= f.submit @product.persisted? ? 'Update Product (will be re-submitted for approval)' : 'Submit Product for Approval' %>
+
+
 <% end %>
