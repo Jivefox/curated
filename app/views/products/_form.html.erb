@@ -25,11 +25,9 @@
         <%= categories_fields.label :category, "Add new category" %><br>
         <%= categories_fields.text_field :name %><br>
     <% end %><br>
-    <%= f.label :product_image %><br>
-    <%= f.file_field :product_image %><br><br>
+    <%= f.label :image, "Upload images" %><br>
+    <%= f.file_field :image, multiple: true %><br><br>
 
-
-    <%= f.submit @product.persisted? ? "Update Product", data: { confirm: "An updated product will be submitted for re-approval" } : "Submit Product for Approval" %>
-
+    <%= f.submit @product.persisted? ? "Update Product" : "Submit for approval" %>
 
 <% end %>

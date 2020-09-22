@@ -69,7 +69,7 @@ private
     def products_params
         params
             .require(:product)
-            .permit(:name, :description, :price, :approved, category_ids: [], categories_attributes: [:name])
+            .permit(:name, :description, :price, :approved, category_ids: [], images: [], categories_attributes: [:name])
             .with_defaults(approved: false)
     end
 end

@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
     has_many :products_categories
     has_many :categories, through: :products_categories, dependent: :destroy
+    has_many_attached :images
 
     # validates_with CategoryValidator
     validates :categories, presence: true
