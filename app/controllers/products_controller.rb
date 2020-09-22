@@ -46,6 +46,7 @@ class ProductsController < ApplicationController
     end
 
     def update
+        binding.pry
         @product.update(products_params)
 
         if @product.save
@@ -69,7 +70,14 @@ private
     def products_params
         params
             .require(:product)
-            .permit(:name, :description, :price, :approved, category_ids: [], images: [], categories_attributes: [:name])
+            .permit(
+                :name, 
+                :description, 
+                :price, 
+                :approved, 
+                category_ids: [], 
+                images: [], 
+                categories_attributes: [:name])
             .with_defaults(approved: false)
     end
 end
