@@ -2,8 +2,9 @@ class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
+        binding.pry
         if params[:category_id]
-            @category = Category.find_by(id: params[:category_id])
+            @category = Category.find_by(slug: params[:category_id])
             if @category.nil?
                 redirect_to categories_path, alert: "Category not found"
             else
@@ -32,7 +33,7 @@ class ProductsController < ApplicationController
     def show
         # binding.pry
         if params[:category_id]
-            @category = Category.find_by(id: params[:category_id])
+            @category = Category.find_by(slug: params[:category_id])
             @product = @category.products.find_by(id: params[:id])
             if @product.nil?
                 redirect_to category_products_path(@category), alert: "Product not found"
