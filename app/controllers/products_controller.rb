@@ -67,6 +67,21 @@ private
         redirect_to products_path, alert: "Product not found" if @product.nil?
     end
 
+    def images_attached?
+        images.attached?
+    end
+
+    def image_type
+        if !images.attached?
+            errors.add(:images, "(or at least one image) must exist for product.")
+        end
+        images.each do |image|
+            if !image.content_type.in?(%('image/jpeg image/png'))
+                errors.add(:images, "must be formatted as either .jpeg or .png")
+            end
+        end
+    end
+
     def products_params
         params
             .require(:product)
