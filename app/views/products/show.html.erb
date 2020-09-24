@@ -4,8 +4,8 @@
 
 <h1><%= @product.name %></h1>
 
-<% @product.images.each do |image| %>
-    <%= image_tag(image) %><br>
+<% @product.thumbnails.each do |thumbnail| %>
+    <%= image_tag(thumbnail) %><br>
 <% end %>
 
 <%= @product.description %><br><br>
@@ -15,5 +15,17 @@
         <%= link_to category.name, category_products_path(category) %>
     </li>
 <% end %><br>
+
+<% #if current_user.admin %>
+    <%= #form_for @product do |f| %>
+        <%= #f.label :approved %>
+        <%= #f.check_box :approved %>
+    <% #end %>
+<% #else %>
+    <%= form_for @product do |f| %>
+        <%= f.hidden_field :available %>
+        <%= f.submit "Buy"%>
+    <% end %>
+<% end %>
 
 <%= link_to "See all products", products_path %> | <%= link_to "Edit product", edit_product_path(@product) %> | <%= link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>

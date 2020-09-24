@@ -15,4 +15,10 @@ class Product < ApplicationRecord
             self.categories << category unless category.nil?
         end
     end
+
+    def thumbnails
+        images.each do |image|
+            image.variant(resize: '300x300!').processed
+        end
+    end
 end
