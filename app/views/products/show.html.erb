@@ -5,7 +5,7 @@
 <h1><%= @product.name %></h1>
 
 <% @product.images.each do |image| %>
-    <%= image_tag(image) %>
+    <%= image_tag(image) %><br>
 <% end %>
 
 <%= @product.description %><br><br>

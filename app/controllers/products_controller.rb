@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
-        binding.pry
+        # binding.pry
         if params[:category_id]
             @category = Category.find_by(slug: params[:category_id])
             if @category.nil?
@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
     end
 
     def update
-        binding.pry
+        # binding.pry
         @product.update(products_params)
 
         if @product.save
