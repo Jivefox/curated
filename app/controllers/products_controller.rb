@@ -50,6 +50,8 @@ class ProductsController < ApplicationController
         # binding.pry
         @product.update(products_params)
 
+        @product.available = false if params[:commit] == "Buy"
+
         if @product.save
             redirect_to @product
         else
@@ -73,7 +75,7 @@ private
     end
 
     def image_type
-        if !images.attached?
+        if !images_attached?
             errors.add(:images, "(or at least one image) must exist for product.")
         end
         images.each do |image|
@@ -84,16 +86,15 @@ private
     end
 
     def products_params
-        params
-            .require(:product)
-            .permit(
+        params.require(:product).permit(
                 :name, 
                 :description, 
                 :price, 
-                :approved, 
+                :approved,
+                :available,
                 category_ids: [], 
                 images: [], 
                 categories_attributes: [:name])
-            .with_defaults(approved: false)
+                .with_defaults(approved: false)
     end
 end

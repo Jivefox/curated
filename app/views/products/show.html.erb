@@ -16,15 +16,10 @@
     </li>
 <% end %><br>
 
-<% #if current_user.admin %>
-    <%= #form_for @product do |f| %>
-        <%= #f.label :approved %>
-        <%= #f.check_box :approved %>
-    <% #end %>
-<% #else %>
+<% if @product.available %>
     <%= form_for @product do |f| %>
         <%= f.hidden_field :available %>
-        <%= f.submit "Buy"%>
+        <%= f.submit "Buy" %>
     <% end %>
 <% end %>
 
