@@ -8,6 +8,7 @@ class Product < ApplicationRecord
     validates :name, presence: true
     validates :price, presence: true, numericality: true
     validates :description, presence: true
+    validate :image_type
 
     # accepts_nested_attributes_for :categories
 
@@ -23,4 +24,16 @@ class Product < ApplicationRecord
             image.variant(resize: '300x300!').processed
         end
     end
+
+    def image_type
+        if !images.attached?
+            errors.add(:images, "(or at least one image) must exist for product.")
+        end
+        images.each do |image|
+            if !image.content_type.in?(%('image/jpeg image/png'))
+                errors.add(:images, "must be formatted as either .jpeg or .png")
+            end
+        end
+    end
+
 end
