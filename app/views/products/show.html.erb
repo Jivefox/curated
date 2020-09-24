@@ -4,8 +4,8 @@
 
 <h1><%= @product.name %></h1>
 
-<% @product.thumbnails.each do |thumbnail| %>
-    <%= image_tag(thumbnail, size: '300') %><br>
+<% @product.images.each do |image| %>
+    <%= image_tag(image, size: '300') %><br>
 <% end %>
 
 <%= @product.description %><br><br>
