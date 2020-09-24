@@ -21,6 +21,8 @@
         <%= f.hidden_field :available %>
         <%= f.submit "Buy" %>
     <% end %>
+<% else %>
+    <em>This product is no longer available</em>
 <% end %>
 
 <%= link_to "See all products", products_path %> | <%= link_to "Edit product", edit_product_path(@product) %> | <%= link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>

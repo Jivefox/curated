@@ -21,12 +21,12 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.new(products_params)
-        # binding.pry
+        binding.pry
         if @product.valid?
             @product.save
             redirect_to product_path(@product)
         else 
-            redirect_to new_product_path
+            render :new        
         end
     end
 

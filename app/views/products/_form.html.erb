@@ -1,15 +1,15 @@
 <% if @product.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@product.errors.count, "error") %>
-      stopped this product from being saved:
+      <%= pluralize(@product.errors.count, "thing") %>
+      prevented that from working:
     </h2>
  
-    <ul>
+    <ol>
     <% @product.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
-    </ul>
+    </ol>
   </div>
 <% end %>
 
