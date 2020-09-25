@@ -7,3 +7,12 @@
 
 2. Change products index page to have dynamic <h1> if it is for all products or products within a category.
 
+
+Show sold products in index?
+
+Set up authorization if current_user.admin || current_user.id == seller.id (that's now quite right because those integers won't be the same, but need to add checks so that either admin or the seller only have access to those actions) only in edit/update/delete actions
+
+Add approval option to admin show page and also show all products pending approval in index page if current_user.admin
+
+
+

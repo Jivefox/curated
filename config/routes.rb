@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  root to: 'static#home'
+  root to: 'products#index'
   devise_for :users
 
   resources :categories do 
