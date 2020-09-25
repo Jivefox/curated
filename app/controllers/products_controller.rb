@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:index]
 
     def index
         # binding.pry
@@ -21,6 +22,7 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.new(products_params)
+        @product.user = current_user
         binding.pry
         if @product.valid?
             @product.save
