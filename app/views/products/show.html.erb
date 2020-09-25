@@ -22,7 +22,11 @@
         <%= f.submit "Buy" %>
     <% end %>
 <% else %>
-    <em>This product is no longer available</em>
+    <em>This product is no longer available</em><br><br>
 <% end %>
 
-<%= link_to "See all products", products_path %> | <%= link_to "Edit product", edit_product_path(@product) %> | <%= link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>
+<%= link_to "See all products", products_path %>
+<% if current_user && current_user.admin %>
+| <%= link_to "Edit product", edit_product_path(@product) %> | 
+<%= link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>
+<% end %>
