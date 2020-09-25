@@ -7,6 +7,9 @@
 
 2. Change products index page to have dynamic <h1> if it is for all products or products within a category.
 
+Change create action for products to set seller_id upon creation
+Change edit action for products to set buyer_id when "sold"
+
 
 Show sold products in index?
 

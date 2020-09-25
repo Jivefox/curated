@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.new(products_params)
-        @product.user = current_user
+        @product.seller = current_user
         binding.pry
         if @product.valid?
             @product.save
@@ -52,7 +52,10 @@ class ProductsController < ApplicationController
         # binding.pry
         @product.update(products_params)
 
-        @product.available = false if params[:commit] == "Buy"
+        if params[:commit] == "Buy"
+            @product.available = false
+            @product.buyer = current_user
+        end
 
         if @product.save
             redirect_to @product
@@ -79,6 +82,8 @@ private
             :price, 
             :approved,
             :available,
+            :seller,
+            :buyer,
             category_ids: [], 
             images: [], 
             categories_attributes: [:name])
