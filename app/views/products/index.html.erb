@@ -12,37 +12,32 @@
     <%= link_to "Log in", new_user_session_path %>
 <% end %>
 
-<ul>
-    <% if current_user.admin %>
-        <% @products.each do |product| %>
-            <% if !product.approved %>
-                <h2>Pending Approval</h2>
-                    <li>
-                        <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
-                    </li>
-            <% elsif !product.available %>
-                <h2>Sold Products</h2>
-                    <li>
-                        <%= link_to product.name, product_path(product) %>
-                    </li>
-            <% end %>
-        <% end%>
-    <% else %>
-        <h2>Available Products</h2>
-            <% if product.approved && product.available %> #change column name in products from "available" to "sold" make "available" a helper that means a product is both approved and not sold.
-                <li>
-                    <%= link_to product.name, product_path(product) %>
-                </li>
-            <% end %>
+<% if current_user && current_user.admin %>
+    <h2>Pending Approval</h2>
+    <% @products.each do |product| %>
+        <% if !product.approved %>
+            <li>
+                <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
+            </li>
+        <% end %>
+    <% end%>
+    <h2>Sold Products</h2>
+    <% @products.each do |product| %>
+        <% if !product.available %>
+            <li>
+                <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
+            </li>
+        <% end %>
+    <% end%>
+<% else %>
+    <h2>Available Products</h2>
+    <% @products.each do |product| %>
+        <% if product.approved && product.available %> #change column name in products from "available" to "sold" make "available" a helper that means a product is both approved and not sold.
+            <li>
+                <%= link_to product.name, product_path(product) %>
+            </li>
+        <% end %>
     <% end %>
-
-    
-                
-       
-    
-    <% end %>
-</ol>
-    
-<% end %><br>
+<% end %> 
 
 <%= link_to "Sell something", new_product_path %> | <%= link_to "Shop by category", categories_path %>
