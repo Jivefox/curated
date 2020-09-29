@@ -14,14 +14,19 @@
 
 <h2>All products</h2>
 
-
-<% @products.each do |product| %>
-    <% if product.approved && product.available %>
-        <li>
-            <%= link_to product.name, product_path(product) %>
-        </li>
+<ul>
+    <% @products.each do |product| %>
+        <% if current_user.admin %>
+            <li>
+                <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
+            </li>
+        <% if product.approved && product.available %>
+            <li>
+                <%= link_to product.name, product_path(product) %>
+            </li>
+    
     <% end %>
-
+</ol>
     
 <% end %><br>
 
