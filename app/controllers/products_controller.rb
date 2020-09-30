@@ -12,7 +12,9 @@ class ProductsController < ApplicationController
                 @products = @category.products
             end
         else
-            @products = Product.all
+            @available_products = Product.available_products
+            @pending_products = Product.pending_products
+            @sold_products = Product.sold_products
         end
     end
 
@@ -23,7 +25,7 @@ class ProductsController < ApplicationController
     def create
         @product = Product.new(products_params)
         @product.seller = current_user
-        binding.pry
+        # binding.pry
         if @product.valid?
             @product.save
             redirect_to product_path(@product)
@@ -55,10 +57,11 @@ class ProductsController < ApplicationController
         if params[:commit] == "Buy"
             @product.available = false
             @product.buyer = current_user
+            @product.approved = true
         end
 
         if @product.save
-            redirect_to @product
+            redirect_to products_path
         else
             render :edit
         end

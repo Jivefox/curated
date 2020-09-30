@@ -28,5 +28,6 @@
     <%= f.label :images, "Select product images" %><br>
     <%= f.file_field :images, multiple: true %><br><br>
     <%= f.submit @product.persisted? ? "Update Product" : "Submit for approval" %>
+    # how to add pop up confirmation box for either side of ternary
 
 <% end %>

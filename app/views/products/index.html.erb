@@ -12,32 +12,26 @@
     <%= link_to "Log in", new_user_session_path %>
 <% end %>
 
-<% if current_user && current_user.admin %>
+<% if current_admin? %>
     <h2>Pending Approval</h2>
-    <% @products.each do |product| %>
-        <% if !product.approved %>
-            <li>
-                <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
-            </li>
-        <% end %>
+    <% @pending_products.each do |product| %>
+        <li>
+            <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
+        </li>
     <% end%>
     <h2>Sold Products</h2>
-    <% @products.each do |product| %>
-        <% if !product.available %>
-            <li>
-                <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
-            </li>
-        <% end %>
+    <% @sold_products.each do |product| %>
+        <li>
+            <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
+        </li>
     <% end%>
 <% end %>
 
 <h2>Available Products</h2>
-<% @products.each do |product| %>
-    <% if product.approved && product.available %> #change column name in products from "available" to "sold" make "available" a helper that means a product is both approved and not sold.
-        <li>
-            <%= link_to product.name, product_path(product) %>
-        </li>
-    <% end %>
+<% @available_products.each do |product| %>
+    <li>
+        <%= link_to product.name, product_path(product) %>
+    </li>
 <% end %>
 
 <%= link_to "Sell something", new_product_path %> | <%= link_to "Shop by category", categories_path %>

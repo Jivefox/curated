@@ -3,27 +3,18 @@ class Product < ApplicationRecord
     has_many :categories, through: :products_categories, dependent: :destroy
     has_many_attached :images
     belongs_to :seller, class_name: "User"
-    belongs_to :buyer, class_name: "User"
+    belongs_to :buyer, class_name: "User", optional: true
 
-    # validates_with CategoryValidator
     validates :categories, presence: true
     validates :name, presence: true
     validates :price, presence: true, numericality: true
     validates :description, presence: true
     validate :image_type
 
-    # accepts_nested_attributes_for :categories
-
     def categories_attributes=(category_attributes)
         category_attributes.values.each do |category_attribute|
             category = Category.find_or_create_by(category_attribute) unless category_attribute[:name].blank?
             self.categories << category unless category.nil?
-        end
-    end
-
-    def thumbnails
-        images.each do |image|
-            image.variant(resize: '300x300!').processed
         end
     end
 
@@ -36,6 +27,18 @@ class Product < ApplicationRecord
                 errors.add(:images, "must be formatted as either .jpeg or .png")
             end
         end
+    end
+
+    def self.pending_products
+        self.where(approved: false)
+    end
+
+    def self.sold_products
+        self.where(available: false)
+    end
+
+    def self.available_products
+        self.where(approved: true, available: true)
     end
 
 end
