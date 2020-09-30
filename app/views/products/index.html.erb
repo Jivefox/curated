@@ -29,15 +29,15 @@
             </li>
         <% end %>
     <% end%>
-<% else %>
-    <h2>Available Products</h2>
-    <% @products.each do |product| %>
-        <% if product.approved && product.available %> #change column name in products from "available" to "sold" make "available" a helper that means a product is both approved and not sold.
-            <li>
-                <%= link_to product.name, product_path(product) %>
-            </li>
-        <% end %>
+<% end %>
+
+<h2>Available Products</h2>
+<% @products.each do |product| %>
+    <% if product.approved && product.available %> #change column name in products from "available" to "sold" make "available" a helper that means a product is both approved and not sold.
+        <li>
+            <%= link_to product.name, product_path(product) %>
+        </li>
     <% end %>
-<% end %> 
+<% end %>
 
 <%= link_to "Sell something", new_product_path %> | <%= link_to "Shop by category", categories_path %>
