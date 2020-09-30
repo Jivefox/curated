@@ -16,21 +16,23 @@
     </li>
 <% end %><br>
 
-<% if @product.available %>
-    <%= form_for @product do |f| %>
-        <%= f.hidden_field :available %>
-        <%= f.submit "Buy" %>
-    <% end %>
-<% else %>
-    <em>This product is no longer available</em><br><br>
-<% end %>
-
-<%= link_to "See all products", products_path %>
 <% if current_user && current_user.admin %>
   <%= form_for(@product) do |f| %>
     <%= f.check_box :approved %>
-    <%= f.submit "Approve for sale"%>
+    <%= f.submit "Approve for sale"%><br><br>
   <% end %>
-| <%= link_to "Edit product", edit_product_path(@product) %> | 
-<%= link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>
+<% else %>
+    <% if @product.available %>
+        <%= form_for @product do |f| %>
+            <%= f.hidden_field :available %>
+            <%= f.submit "Buy" %>
+        <% end %>
+    <% else %>
+        <em>This product is no longer available</em><br><br>
+    <% end %>
 <% end %>
+
+
+<%= link_to "See all products", products_path %> | 
+<%= link_to "Edit product", edit_product_path(@product) %> | 
+<%= link_to "Delete", @product, method: :delete, data: { confirm: "Really?" } %>
