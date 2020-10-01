@@ -84,7 +84,7 @@ private
             :description, 
             :price, 
             :approved,
-            :available,
+            :sold,
             :seller,
             :buyer,
             category_ids: [], 

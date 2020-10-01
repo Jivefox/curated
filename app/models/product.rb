@@ -34,11 +34,11 @@ class Product < ApplicationRecord
     end
 
     def self.sold_products
-        self.where(available: false)
+        self.where(sold: true)
     end
 
     def self.available_products
-        self.where(approved: true, available: true)
+        self.where(approved: true, sold: false)
     end
 
 end

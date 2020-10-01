@@ -22,9 +22,9 @@
     <%= f.submit "Approve for sale"%><br><br>
   <% end %>
 <% else %>
-    <% if @product.available %>
+    <% if !@product.sold %>
         <%= form_for @product do |f| %>
-            <%= f.hidden_field :available %>
+            <%= f.hidden_field :sold %>
             <%= f.submit "Buy" %>
         <% end %>
     <% else %>
