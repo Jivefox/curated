@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
             if @category.nil?
                 redirect_to categories_path, alert: "Category not found"
             else
-                @products = @category.products
+                @available_products = @category.available_products
             end
         else
             @available_products = Product.available_products

@@ -41,4 +41,8 @@ class Product < ApplicationRecord
         self.where(approved: true, sold: false)
     end
 
+    # def available_products_for_category
+    #     self.where(categories.include? )
+    # end
+
 end

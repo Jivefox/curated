@@ -12,4 +12,8 @@ class Category < ApplicationRecord
     def to_param
         slug
     end
+
+    def available_products
+        self.products.where(sold: false)
+    end
 end
