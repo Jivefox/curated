@@ -27,8 +27,10 @@
             <%= f.hidden_field :sold %>
             <%= f.submit "Buy" %>
         <% end %>
-    <% else %>
+    <% elsif @product.sold %>
         <em>This product is no longer available</em><br><br>
+    <% elsif !@product.approved %>
+        <em>This product is pending admin approval<em><br><br>
     <% end %>
 <% end %>
 
