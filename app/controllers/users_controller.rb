@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
-    
+
     def show
-        @user = User.find(params[:id])
+        binding.pry
+        @user = current_user
+    end
+
+private
+
+    def current_user?
+        current_user
     end
 end
