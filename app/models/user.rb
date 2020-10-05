@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :sellers, through: :buyers
   has_many :sellers, foreign_key: :seller_id, class_name: "Product"
   has_many :buyers, through: :sellers
+  # how to reciprocate relationship between products?  Users don't know about products.
 end

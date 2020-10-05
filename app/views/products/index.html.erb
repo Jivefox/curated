@@ -24,14 +24,15 @@
         <li>
             <%= link_to product.name, product_path(product) %>  # create and use helper methods to show sold and unapproved items to admins
         </li>
-    <% end%>
-<% end %>
+    <% end%><br>
+<% else %>
 
-<h2>Available Products</h2>
-<% @available_products.each do |product| %>
-    <li>
-        <%= link_to product.name, product_path(product) %>
-    </li>
+    <h2>Available Products</h2>
+    <% @available_products.each do |product| %>
+        <li>
+            <%= link_to product.name, product_path(product) %>
+        </li>
+    <% end %>
 <% end %>
 
 <%= link_to "Sell something", new_product_path %> | <%= link_to "Shop by category", categories_path %>
