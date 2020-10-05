@@ -4,6 +4,6 @@
 <h2>Sold Products</h2>
     <% @products.each do |product| %>
         <li>
-            <%= link_to product.name, product_path(product) if product.seller == @user %>
+            <%= link_to product.name, product_path(product) %>
         </li>
     <% end %>
