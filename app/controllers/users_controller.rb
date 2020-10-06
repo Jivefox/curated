@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     def show
-        binding.pry
+        # binding.pry
         @user = User.find(params[:id])
         if current_admin?
             @pending_approval = Product.pending_products
