@@ -10,7 +10,11 @@ class User < ApplicationRecord
   has_many :buyers, through: :sellers
   # how to reciprocate relationship between products?  Users don't know about products.
 
-  def products
+  def sold_products
     Product.where("seller_id = #{self.id}")
+  end
+
+  def bought_products
+    Product.where("buyer_id = #{self.id}")
   end
 end

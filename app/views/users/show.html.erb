@@ -2,7 +2,14 @@
 <h1><%= @user.email %></h1>
 
 <h2>Sold Products</h2>
-    <% @products.each do |product| %>
+    <% @sold_products.each do |product| %>
+        <li>
+            <%= link_to product.name, product_path(product) %>
+        </li>
+    <% end %>
+
+<h2>Purchase History</h2>
+    <% @bought_products.each do |product| %>
         <li>
             <%= link_to product.name, product_path(product) %>
         </li>
