@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable      
 
   has_many :buyers, foreign_key: :buyer_id , class_name: "Product"
   has_many :sellers, through: :buyers
@@ -17,4 +17,14 @@ class User < ApplicationRecord
   def bought_products
     Product.where("buyer_id = #{self.id}")
   end
+
+  # def self.from_omniauth(auth)
+  #   # Either create a User record or update it based on the provider (Google) and the UID   
+  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+  #     user.token = auth.credentials.token
+  #     user.expires = auth.credentials.expires
+  #     user.expires_at = auth.credentials.expires_at
+  #     user.refresh_token = auth.credentials.refresh_token
+  #   end
+  # end
 end
