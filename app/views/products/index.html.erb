@@ -4,15 +4,6 @@
 
 <h1>Curated</h1>
 
-<% if session[:user_id] %>
-  <h1><%= @user.name %></h1>
-  <h2>Email: <%= @user.email %></h2>
-  <h2>Facebook UID: <%= @user.uid %></h2>
-  <img src="<%= @user.image %>">
-<% else %>
-  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
-<% end %>
-
 <% if current_user %>
     Signed in as <%= current_user.email %>
     <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
@@ -22,15 +13,22 @@
     <%= link_to "Sign up", new_user_registration_path %> |
 
     <%= link_to "Log in", new_user_session_path %>
+<% end %><br><br>
+
+<% if session[:user_id] %>
+  <h1><%= @user.name %></h1>
+  <h2>Email: <%= @user.email %></h2>
+  <h2>Facebook UID: <%= @user.uid %></h2>
+  <img src="<%= @user.image %>">
+<% else %>
+  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
 <% end %>
 
-
 <h2>Available Products</h2>
-    <% @available_products.each do |product| %>
-        <li>
-            <%= link_to product.name, product_path(product) %>
-        </li>
-    <% end %>
+<% @available_products.each do |product| %>
+    <li>
+        <%= link_to product.name, product_path(product) %>
+    </li>
 <% end %>
 
 <%= link_to "Sell something", new_product_path %> | <%= link_to "Shop by category", categories_path %>

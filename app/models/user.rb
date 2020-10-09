@@ -18,6 +18,10 @@ class User < ApplicationRecord
     Product.where("buyer_id = #{self.id}")
   end
 
+  def username
+    self.email.split("@")[0]
+  end
+
   # def self.from_omniauth(auth)
   #   # Either create a User record or update it based on the provider (Google) and the UID   
   #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
