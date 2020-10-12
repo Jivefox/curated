@@ -19,7 +19,7 @@
 <% if current_admin? %>
   <%= form_for(@product) do |f| %>
     <%= f.check_box :approved %>
-    <%= f.submit "Approve for sale"%><br><br>
+    <%= f.submit "Approve for sale"%><br><br> <% #need to add condition that product has not been sold before showing option to approve %>
   <% end %>
 <% else %>
     <% if @product.available? %>
