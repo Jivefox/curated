@@ -271,7 +271,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
+  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: 'public_profile,email', info_fields: 'email,name'
 
   # Rails.application.config.middleware.use OmniAuth::Builder do
 #     provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']

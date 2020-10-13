@@ -16,14 +16,6 @@
 <% end %><br><br>
 
 
-<% #if session[:user_id] %>
-  <h1><%= #@user.name %></h1>
-  <h2>Email: <%= #@user.email %></h2>
-  <h2>Facebook UID: <%= #@user.uid %></h2>
-<% #el#se %>
-  <%= #link_to('Log in with Facebook!', user_facebook_omniauth_authorize_path) %>
-<% #end %>
-
 <h2>Available Products</h2>
 <% @available_products.each do |product| %>
     <li>
