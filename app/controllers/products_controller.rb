@@ -58,10 +58,12 @@ class ProductsController < ApplicationController
             @product.available = false
             @product.buyer = current_user
             @product.approved = true
-        end
-
-        if @product.save
-            redirect_to products_path
+        elsif @product.save
+            if current_admin?
+                redirect_to admin_user_path(current_user)
+            else
+                redirect_to products_path
+            end
         else
             render :edit
         end

@@ -19,19 +19,18 @@
 <% if current_admin? %>
   <%= form_for(@product) do |f| %>
     <%= f.check_box :approved %>
-    <%= f.submit "Approve for sale"%><br><br> <% #need to add condition that product has not been sold before showing option to approve %>
-  <% end %>
-<% else %>
-    <% if @product.available? %>
-        <%= form_for @product do |f| %>
-            <%= f.hidden_field :sold %>
-            <%= f.submit "Buy" %>
-        <% end %>
-    <% elsif @product.sold %>
-        <em>This product is no longer available</em><br><br>
-    <% elsif !@product.approved %>
-        <em>This product is pending admin approval<em><br><br>
+    <%= f.submit "Approve for sale"%><br><br>
     <% end %>
+<% elsif @product.available? %>
+    <%= form_for @product do |f| %>
+        <%= f.hidden_field :sold %>
+        <%= f.submit "Buy" %>
+    <% end %>
+<% end %>
+<% if @product.sold %>
+    <em>This product is no longer available</em><br><br>
+<% elsif !@product.approved %>
+    <em>This product is pending admin approval<em><br><br>
 <% end %>
 
 

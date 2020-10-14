@@ -19,4 +19,8 @@ categories = [{name: "Furniture"},
         end
 
 
-products = []
+products = [{name: "Black Tolix H Stool 75", description: "An overpriced stool that could be yours for a pittance!", price: 226, approved: true, seller_id: 1}]
+
+        products.each do |product|
+            Product.create(product)
+        end
