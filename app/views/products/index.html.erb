@@ -7,10 +7,14 @@
 <% end %>
 
 <h2>Available Products</h2>
-<% @available_products.each do |product| %>
-    <li>
-        <%= link_to product.name, product_path(product) %>
-    </li>
-<% end %><br>
+<% if !@available_products.empty? %>
+    <% @available_products.each do |product| %>
+        <li>
+            <%= link_to product.name, product_path(product) %>
+        </li>
+    <% end %><br>
+<% else %>
+    <em>Sorry, there are currently no available products for this category.</em>
+<% end %><br><br>
 
 <%= link_to "Sell something", new_product_path %> | <%= link_to "Shop by category", categories_path %>

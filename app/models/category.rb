@@ -14,6 +14,6 @@ class Category < ApplicationRecord
     end
 
     def available_products
-        self.products.where(sold: false)
+        self.products.where(approved: true, sold: false)
     end
 end
