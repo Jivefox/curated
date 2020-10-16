@@ -1,7 +1,3 @@
-<% if flash[:alert] %>
-    <div class="alert"><%= flash[:alert] %></div>
-<% end %>
-
 <% if current_admin? %>
     <%= link_to "Admin dashboard", admin_user_path(current_user) %>
 <% end %>
