@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :authorized?
+    before_action :authorized_admin?
     
     def show
         @user = User.find(params[:id])
@@ -9,7 +9,7 @@ class Admin::UsersController < ApplicationController
 
     private
 
-    def authorized?
+    def authorized_admin?
       unless current_admin?
         flash[:alert] = "What are you doing?  You can't go there."
         redirect_to root_path
