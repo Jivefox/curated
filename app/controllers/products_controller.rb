@@ -48,7 +48,6 @@ class ProductsController < ApplicationController
     end
 
     def edit
-        binding.pry
         if current_admin? || @product.seller == current_user
             render :edit
         else

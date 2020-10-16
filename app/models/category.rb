@@ -2,7 +2,7 @@ class Category < ApplicationRecord
     has_many :products_categories
     has_many :products, through: :products_categories, dependent: :destroy
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
     after_validation :set_slug, only: [:create, :update]
 
     def set_slug
