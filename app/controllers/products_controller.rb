@@ -48,6 +48,12 @@ class ProductsController < ApplicationController
     end
 
     def edit
+        binding.pry
+        if current_admin? || @product.seller == current_user
+            render :edit
+        else
+            redirect_to products_path, alert: "You do not have permission to edit this product."
+        end
     end
 
     def update
